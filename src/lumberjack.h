@@ -15,9 +15,11 @@
 #include <mstcpip.h>
 using namespace std;
 
+string exec(string cmd);
 string extractBytes(char* buf, int bytes);
 
 void write(SOCKET sock, string buf);
 void read(SOCKET sock);
 
+string getHost(string email);
 void sendMail(SOCKET sock, string host, string from, string to, string subject, string message);

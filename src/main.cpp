@@ -2,8 +2,8 @@
 
 int main(int argc, char* argv[])
 {
-    if (argc < 6) {
-        cout << "Usage:" << endl << "lumberjack [server] [from] [to] [subject] [message]" << endl << "NOTE: The server arguement is the outgoing server for the recipient's email" << endl;
+    if (argc < 5) {
+        cout << "Usage:" << endl << "lumberjack [from] [to] [subject] [message]" << endl;
         return 1;
     }
 
@@ -12,11 +12,11 @@ int main(int argc, char* argv[])
     sockaddr_in server;
     hostent* hp;
 
-    string host = argv[1];
-    string from = argv[2];
-    string to = argv[3];
-    string subject = argv[4] + string("\r\n");
-    string message = argv[5] + string("\r\n");
+    string from = argv[1];
+    string to = argv[2];
+    string subject = argv[3] + string("\r\n");
+    string message = argv[4] + string("\r\n");
+    string host = getHost(to);
 
     if (WSAStartup(MAKEWORD(2, 2), &wd) != 0) {
         cout << "Error initialising Winsock. Code " << WSAGetLastError() << endl;
